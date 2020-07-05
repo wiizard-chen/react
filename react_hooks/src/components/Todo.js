@@ -1,11 +1,11 @@
 // react 套路, 组件需要继承 Component
 import React, { Component, useState, useEffect, useCallback }  from 'react'
-//
-// // import {Component} from 'react'
-//
+
+import {TodoContext} from "./TodoContext";
+
 // // 引用 TodoInput, TodoList 组件
 // import TodoInput from "./TodoInput"
-// import TodoList from "./TodoList"
+import TodoList from "./TodoList"
 
 // 普通的 Model 类
 import TodoModel from "../model/todo"
@@ -88,16 +88,27 @@ const Todo = () => {
         setMyInfo(nInfo)
     }
 
+    const onDelete = (id) => {
+
+    }
+
+    // 所谓的自定义 Hook
+    // 最大的用途是 mixin, 还有和全局变量的联动
+    // 花式全局变量, 乐色设置
+
+    const actions = {
+        onDelete: onDelete,
+    }
 
     return (
         <div className={'Container'}>
             <div className={'Header'}>TODO</div>
             <div className={'MainContent'}>
                 <button onClick={fuckClick}>{myInfo.name}</button>
-                {/*<TodoContext.Provider value={actions}>*/}
-                {/*    <TodoInput onAdd={this.onAdd}></TodoInput>*/}
-                {/*    <TodoList todos={todos}></TodoList>*/}
-                {/*</TodoContext.Provider>*/}
+                <TodoContext.Provider value={actions}>
+                    {/*<TodoInput onAdd={this.onAdd}></TodoInput>*/}
+                    <TodoList todos={todos}></TodoList>
+                </TodoContext.Provider>
             </div>
         </div>
     )
