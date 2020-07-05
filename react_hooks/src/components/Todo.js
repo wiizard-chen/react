@@ -19,6 +19,7 @@ const Todo = () => {
     // useEffect 可以多次定义, 当前 useEffect 会调用上一个 useEffect 返回函数
     // u1 -> u2 -> u3 -> u4
     // 执行链
+    // 谁先声明先执行谁, 第二个参数只是个 if 条件的缩略版本, 这是重点
     // useEffect 分成两部分
     // content 与 result
     // 首先 didMount 执行, 只会执行 content
@@ -26,7 +27,6 @@ const Todo = () => {
 
     // useEffect 就是监控相应的属性, 相当于 vue 中的 watch
     // 没有第二个参数的 useEffect 是每次都会调用的, 相当于没有条件的componentDidUpdate
-
 
     // effect 0 只会执行一次
     useEffect(() => {
@@ -69,6 +69,10 @@ const Todo = () => {
         }
     }, [myInfo])
 
+    //
+    // useEffect(()=>{
+    //     log('fuck more')
+    // }, [todos, myInfo])
 
 
     // methods
@@ -89,6 +93,7 @@ const Todo = () => {
     }
 
     const onDelete = (id) => {
+        log('fuck id', id)
 
     }
 
@@ -105,6 +110,7 @@ const Todo = () => {
             <div className={'Header'}>TODO</div>
             <div className={'MainContent'}>
                 <button onClick={fuckClick}>{myInfo.name}</button>
+                <p>{actions.name}</p>
                 <TodoContext.Provider value={actions}>
                     {/*<TodoInput onAdd={this.onAdd}></TodoInput>*/}
                     <TodoList todos={todos}></TodoList>

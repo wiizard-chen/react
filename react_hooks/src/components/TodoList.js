@@ -1,10 +1,11 @@
 // react 套路, 组件需要继承 Component
 // import {Component} from 'react'
-import React, { Component, useState, useEffect, useCallback }  from 'react'
+import React, { Component, useState, useEffect, useCallback, useContext }  from 'react'
 
 
 // 引用 TodoItem 组件
 import TodoItem from "./TodoItem"
+import {TodoContext} from "./TodoContext";
 
 // class TodoList extends Component {
 //     constructor(props) {
@@ -30,9 +31,12 @@ import TodoItem from "./TodoItem"
 
 
 const TodoList = (todos) => {
-    const [count, setCount] = useState(0)
+    const todoCtx = useContext(TodoContext);
     return (
-        <div>fuck react</div>
+        <>
+            <div>fuck react</div>
+            <button onClick={(e)=>todoCtx.onDelete(1)}>delete fuck</button>
+        </>
     )
 }
 
