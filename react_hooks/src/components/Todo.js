@@ -6,6 +6,7 @@ import {TodoContext} from "./TodoContext";
 // // 引用 TodoInput, TodoList 组件
 // import TodoInput from "./TodoInput"
 import TodoList from "./TodoList"
+import Counter from './Count.js'
 
 // 普通的 Model 类
 import TodoModel from "../model/todo"
@@ -116,6 +117,8 @@ const Todo = () => {
                     <TodoList todos={todos}></TodoList>
                 </TodoContext.Provider>
             </div>
+
+            <Counter/>
         </div>
     )
 }
